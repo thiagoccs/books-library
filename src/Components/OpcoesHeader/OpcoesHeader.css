@@ -1,0 +1,29 @@
+.menus {
+    display: flex;
+}
+
+.opcoes {
+    display: flex;
+}
+
+.opcao {
+    /* min-width: 120px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 0 15px;
+}
+
+.icones {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    padding-left: 20px;
+}
+
+.icone {
+    cursor: pointer;
+    padding: 8px;
+}

@@ -1,0 +1,57 @@
+.book-card {
+  border-radius: 25px;
+  border: 5px solid #fc7022;
+  margin: 10px;
+  background-image: linear-gradient(90deg, #fc7022, #ffd700);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  min-width: 300px;
+}
+
+.book-image {
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 10px;
+}
+
+.book-info {
+  display: flex;
+  justify-content: space-between; /* Coloca os elementos próximos à borda */
+  align-items: flex-start;
+}
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.book-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.book-author {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.book-year {
+  font-size: 16px;
+  margin-bottom: 5px; /* Reduzido para ficar mais próximo */
+}
+
+.author-photo {
+  border: 2px solid #fc7022;  
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  align-self: flex-end; /* Posiciona no canto superior direito */
+}
