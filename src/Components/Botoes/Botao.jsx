@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import './Botao.css'
+import { Link } from 'react-router-dom';
 
 export default function Botao({ bttnName }) {
   return (
-    <button type="button" className='botao'>{ bttnName }</button>
+    <Link to={`/${bttnName.replace(' ', '_').toLowerCase()}`}>
+      <button type="button" className='botao'>{bttnName}</button>
+    </Link>
   );
 }
 

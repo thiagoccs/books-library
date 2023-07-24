@@ -38,7 +38,6 @@ const Subtitulo = styled.h3`
 
 export default function Pesquisa() {
   const { livrosGerais, setLivrosGerais } = useContext(MyContext);
-  console.log(livrosGerais);
 
   return (
     <PesquisaContainer>

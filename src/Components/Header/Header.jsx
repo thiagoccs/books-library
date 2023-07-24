@@ -2,6 +2,7 @@ import React from "react";
 import Logo from '../Logo/Logo';
 import OpcoesHeader from '../OpcoesHeader/OpcoesHeader';
 import { styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
     min-height: 100px;
@@ -13,7 +14,9 @@ const HeaderContainer = styled.header`
 export default function Header() {
   return (
     <HeaderContainer>
-      <Logo />
+      <Link to='/'>
+        <Logo />
+      </Link>
       <OpcoesHeader />
     </HeaderContainer>
   )
