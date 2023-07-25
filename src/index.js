@@ -4,7 +4,8 @@ import reportWebVitals from './reportWebVitals';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header'
-import Home from './Home';
+import Home from './pages/Home';
+import Favoritos from './pages/Favoritos';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -35,8 +36,8 @@ root.render(
     <BrowserRouter>
     <Header />
       <Routes>
-        <Route path="/favoritos" element={<p>Teste</p>} />
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="/favoritos" element={<Favoritos />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

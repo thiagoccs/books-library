@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Input from "../Input/Input";
 import { useContext } from 'react';
-import { mock_livros } from '../../db/dadosDePesquisa';
 import BookCard from '../BookCard/BookCard';
 import MyContext from '../../MyContext';
+import { getLivros } from '../../services/requests';
 
 const PesquisaContainer = styled.section`
   /* background-image: linear-gradient(90deg, #002F52 35%, #326589 165%); */
@@ -14,16 +14,14 @@ const PesquisaContainer = styled.section`
   min-height: 270px;
   width: 100%;
 `
-
 const BodyContainer = styled.body`
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
   justify-content: center;
   /* justify-content: space-between; */
-  max-width: 100vw;
+  /* max-width: 100vw; */
 `
-
 const Titulo = styled.h2`
         color: #FFF;
         font-size: 36px;
@@ -38,6 +36,18 @@ const Subtitulo = styled.h3`
 
 export default function Pesquisa() {
   const { livrosGerais, setLivrosGerais } = useContext(MyContext);
+  const [livros, setLivros] = useState([]);
+  
+  async function fetchLivros () {
+    const livrosDaAPI = await getLivros();
+    console.log(livrosDaAPI);
+    setLivros(livrosDaAPI);
+    setLivrosGerais(livrosDaAPI)
+  }
+
+  useEffect(() => {
+    fetchLivros();
+  }, []);
 
   return (
     <PesquisaContainer>
@@ -47,7 +57,7 @@ export default function Pesquisa() {
         placeholder="Pesquise pelo nome do livro"
         onChange={(event) => {
           const textoDigitado = event.target.value;
-          const resultadoDePesquisa = mock_livros.filter((livro) => livro.titulo.includes(textoDigitado));
+          const resultadoDePesquisa = livros.filter((livro) => livro.titulo.includes(textoDigitado));
           setLivrosGerais(resultadoDePesquisa);
         }}
       />

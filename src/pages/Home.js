@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Pesquisa from './Components/Pesquisa/Pesquisa';
-import UltimosLancamentos from './Components/UltimosLancamentos/UltimosLancamentos';
-import MyProvider from './MyProvider';
+import Pesquisa from '../Components/Pesquisa/Pesquisa';
+import UltimosLancamentos from '../Components/UltimosLancamentos/UltimosLancamentos';
+import MyProvider from '../MyProvider';
 
 const AppContainer = styled.div`
 /* 
