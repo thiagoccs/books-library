@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header'
 import Home from './pages/Home';
 import Favoritos from './pages/Favoritos';
+import MyProvider from './MyProvider'
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -33,13 +34,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <BrowserRouter>
-    <Header />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/favoritos" element={<Favoritos />} />
-      </Routes>
-    </BrowserRouter>
+    <MyProvider>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/favoritos" element={<Favoritos />} />
+        </Routes>
+      </BrowserRouter>
+    </MyProvider>
   </React.StrictMode>
 );
 

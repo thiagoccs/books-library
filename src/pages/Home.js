@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Pesquisa from '../Components/Pesquisa/Pesquisa';
 import UltimosLancamentos from '../Components/UltimosLancamentos/UltimosLancamentos';
-import MyProvider from '../MyProvider';
 
 const AppContainer = styled.div`
 /* 
@@ -13,12 +12,10 @@ const AppContainer = styled.div`
 
 function Home() {
   return (
-    <MyProvider>
-      <AppContainer>
-        <Pesquisa />
-        <UltimosLancamentos />
-      </AppContainer>
-    </MyProvider>
+    <AppContainer>
+      <Pesquisa />
+      <UltimosLancamentos />
+    </AppContainer>
   );
 }
 

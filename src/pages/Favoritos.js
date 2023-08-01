@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Pesquisa from '../Components/Pesquisa/Pesquisa';
-import MyProvider from '../MyProvider';
+import { getFavoritos } from '../services/requests.favoritos';
+import BookCard from '../Components/BookCard/BookCard';
 
 const FavoritosContainer = styled.div`
-/* 
-  height: 100vh;
-  width: 100vw; */
   background-image: linear-gradient(90deg, #002f52, #4d73a5 165%);
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `
 
 function Favoritos() {
+  const [favoritos, setFavoritos] = useState([]);
+
+  async function fetchFavoritos() {
+    const favoritosDoServidor = await getFavoritos()
+    setFavoritos(favoritosDoServidor);
+  }
+
+  useEffect(() => {
+    fetchFavoritos();
+  }, []);
+
   return (
-    <MyProvider>
-      <FavoritosContainer>
-        <Pesquisa />
-      </FavoritosContainer>
-    </MyProvider>
+    <FavoritosContainer>
+      {
+        favoritos.map((favorito, index) => {
+          const props = { ...favorito, deleteAtivo: true }
+          return <BookCard {...props} key={index} />
+        })
+      }
+    </FavoritosContainer>
   );
 }
 

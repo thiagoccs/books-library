@@ -7,7 +7,7 @@ import MyContext from '../../MyContext';
 import { getLivros } from '../../services/requests';
 
 const PesquisaContainer = styled.section`
-  /* background-image: linear-gradient(90deg, #002F52 35%, #326589 165%); */
+  /* background-image: linear-gradient(90deg, #3d5466 35%, #8394a1 165%); */
   color: #FFF;
   text-align: center;
   padding: 85px 0;
@@ -40,7 +40,6 @@ export default function Pesquisa() {
   
   async function fetchLivros () {
     const livrosDaAPI = await getLivros();
-    console.log(livrosDaAPI);
     setLivros(livrosDaAPI);
     setLivrosGerais(livrosDaAPI)
   }

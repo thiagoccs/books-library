@@ -21,7 +21,7 @@ const BttnDelete = styled.button`
   cursor: pointer; /* Altera o cursor para indicar que o botão é clicável */
 `
 
-function BookCard({ titulo, autor, ano }) {
+function BookCard({ titulo, autor, ano, deleteAtivo = false }) {
   return (
     <div className="book-card">
       <div
@@ -38,7 +38,7 @@ function BookCard({ titulo, autor, ano }) {
           className="author-photo"
           style={{ backgroundImage: `url(${fotAutor})` }}
         ></div>
-        <BttnDelete>X</BttnDelete>
+        {deleteAtivo ? <BttnDelete>X</BttnDelete> : ''}
       </div>
     </div>
   );
