@@ -1,8 +1,8 @@
-import React from 'react';
-import { mock_livros2 } from "../../db/ultimosLancamentos"
+import React, { useEffect, useState } from 'react';
 import BookCard from "../BookCard/BookCard"
 import styled from 'styled-components';
 import { Titulo } from "../Titulo/Titulo";
+import { getLivros } from '../../services/requests';
 
 const UltimosLancamentosContainer = styled.section`
     /* background-color: #EBECEE; */
@@ -20,17 +20,28 @@ const NovosLivrosContainer = styled.div`
 `
 
 export default function UltimosLancamentos() {
+  const [livros, setLivros] = useState([]);
+
+  async function getLivrosServer() {
+    const allLivros = await getLivros();
+    setLivros(allLivros);
+  }
+
+  useEffect(() => {
+    getLivrosServer();
+  }, []);
+
   return (
     <UltimosLancamentosContainer>
       <Titulo
         cor="#EB9B00"
-        tamanhoFonte="36px"
+        tamanhofonte="36px"
       >
         Últimos Lançamentos
       </Titulo>
       <NovosLivrosContainer>
         {
-          mock_livros2.map((livro, index) => <BookCard {...livro} key={index} />)
+          livros.slice(-4).map((livro, index) => <BookCard {...livro} key={index} />)
         }
       </NovosLivrosContainer>
     </UltimosLancamentosContainer>

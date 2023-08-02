@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from 'prop-types';
 import "./BookCard.css";
 import imagem from '../../images/padrão.jpeg'
 import fotAutor from '../../images/autor.jpeg'
 import { styled } from 'styled-components';
+import { deleteFavoritos, postFavoritos } from '../../services/requests.favoritos';
+import MyContext from '../../MyContext';
 
 const BttnDelete = styled.button`
   border-radius: 50%;
@@ -21,7 +23,33 @@ const BttnDelete = styled.button`
   cursor: pointer; /* Altera o cursor para indicar que o botão é clicável */
 `
 
-function BookCard({ titulo, autor, ano, deleteAtivo = false }) {
+function BookCard({ titulo, autor, ano, id, deleteAtivo = false, favAtivo = false }) {
+  const { atualizado, setAtualizado } = useContext(MyContext);
+
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = async () => {
+    setIsChecked(!isChecked);
+    if (!isChecked) {
+      const result = await postFavoritos(id);
+      if (result === 'isFavorite') {
+        setIsChecked(false)
+        return alert(`Livro: ${titulo} já está em favoritos`);
+      }
+      return alert(`Livro: ${titulo} favoritado`);
+    }
+    return;
+  };
+
+  const deletarFavorito = async () => {
+    await deleteFavoritos(id);
+
+    setAtualizado(!atualizado)
+
+    return alert(`Livro: ${titulo} deletado`);
+  }
+
   return (
     <div className="book-card">
       <div
@@ -38,7 +66,14 @@ function BookCard({ titulo, autor, ano, deleteAtivo = false }) {
           className="author-photo"
           style={{ backgroundImage: `url(${fotAutor})` }}
         ></div>
-        {deleteAtivo ? <BttnDelete>X</BttnDelete> : ''}
+        {
+          favAtivo ? <label>favoritar:<input
+            type="checkbox"
+            checked={isChecked}
+            onClick={handleCheckboxChange}
+          /></label> : ''
+        }
+        {deleteAtivo ? <BttnDelete onClick={deletarFavorito}>X</BttnDelete> : ''}
       </div>
     </div>
   );

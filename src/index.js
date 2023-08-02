@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, StyleSheetManager } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header'
 import Home from './pages/Home';
@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== 'cor'}>
     <GlobalStyle />
     <MyProvider>
       <BrowserRouter>
@@ -43,6 +44,7 @@ root.render(
         </Routes>
       </BrowserRouter>
     </MyProvider>
+    </StyleSheetManager>
   </React.StrictMode>
 );
 

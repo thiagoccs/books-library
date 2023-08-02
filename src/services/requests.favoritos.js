@@ -9,7 +9,13 @@ async function getFavoritos() {
 }
 
 async function postFavoritos(id) {
-  await favoritosAPI.post(`/${id}`)
+  try {
+    await favoritosAPI.post(`/${id}`);
+    return;
+  } catch (error) {
+    console.error("Erro ao favoritar livro:", error.message);
+    return 'isFavorite';
+  }
 }
 
 async function deleteFavoritos(id) {

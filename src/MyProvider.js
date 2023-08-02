@@ -4,18 +4,23 @@ import MyContext from './MyContext';
 
 function MyProvider({ children }) {
   const [livrosGerais, setLivrosGerais] = useState([]);
+  const [atualizado, setAtualizado] = useState(false);
   const contextValue = useMemo(() => ({
     livrosGerais,
     setLivrosGerais,
-  }), [livrosGerais]);
+    atualizado,
+    setAtualizado
+  }), [livrosGerais, atualizado]);
+
   return (
     <MyContext.Provider value={contextValue}>
       {children}
     </MyContext.Provider>
-  )
+  );
 }
 
 MyProvider.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+  children: PropTypes.node.isRequired,
 };
+
 export default MyProvider;

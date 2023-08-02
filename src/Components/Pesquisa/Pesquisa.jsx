@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import BookCard from '../BookCard/BookCard';
 import MyContext from '../../MyContext';
 import { getLivros } from '../../services/requests';
+// import { postFavoritos } from '../../services/requests.favoritos';
 
 const PesquisaContainer = styled.section`
   /* background-image: linear-gradient(90deg, #3d5466 35%, #8394a1 165%); */
@@ -14,7 +15,7 @@ const PesquisaContainer = styled.section`
   min-height: 270px;
   width: 100%;
 `
-const BodyContainer = styled.body`
+const DivContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
@@ -37,11 +38,10 @@ const Subtitulo = styled.h3`
 export default function Pesquisa() {
   const { livrosGerais, setLivrosGerais } = useContext(MyContext);
   const [livros, setLivros] = useState([]);
-  
-  async function fetchLivros () {
+
+  async function fetchLivros() {
     const livrosDaAPI = await getLivros();
     setLivros(livrosDaAPI);
-    setLivrosGerais(livrosDaAPI)
   }
 
   useEffect(() => {
@@ -54,17 +54,19 @@ export default function Pesquisa() {
       <Subtitulo>Encontre seu livro em nossa estante</Subtitulo>
       <Input
         placeholder="Pesquise pelo nome do livro"
-        onChange={(event) => {
+        onBlur={(event) => {
           const textoDigitado = event.target.value;
-          const resultadoDePesquisa = livros.filter((livro) => livro.titulo.includes(textoDigitado));
+          const resultadoDePesquisa = livros.filter((livro) => {
+            return livro.titulo.toLowerCase().includes(textoDigitado.toLowerCase())
+          });
           setLivrosGerais(resultadoDePesquisa);
         }}
       />
-      <BodyContainer>
+      <DivContainer>
         {
-          livrosGerais.map((livro, index) => <BookCard {...livro} key={index} />)
+          livrosGerais.map((livro, index) => <BookCard {...livro} favAtivo={true} key={index}/>)
         }
-      </BodyContainer>
+      </DivContainer>
     </PesquisaContainer>
   )
 }
