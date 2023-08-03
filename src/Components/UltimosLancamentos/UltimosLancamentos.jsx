@@ -16,7 +16,6 @@ const NovosLivrosContainer = styled.div`
     flex-wrap: wrap;
     width: 100%;
     justify-content: center;
-    cursor: pointer;
 `
 
 export default function UltimosLancamentos() {

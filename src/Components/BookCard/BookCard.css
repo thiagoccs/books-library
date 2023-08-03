@@ -1,12 +1,14 @@
 .book-card {
   border-radius: 25px;
-  border: 5px solid #fc7022;
+  border: 5px solid black;
   margin: 10px;
   background-image: linear-gradient(90deg, #fc7022, #ffd700);
   display: flex;
   flex-direction: column;
   padding: 10px;
-  min-width: 300px;
+  width: 300px;
+  height: 400px;
+  justify-content: space-between;
 }
 
 .book-image {
@@ -17,42 +19,56 @@
   background-position: center;
   margin-bottom: 10px;
   max-width: 400px;
+  border: 2px solid black;
 }
 
 .book-info {
   display: flex;
-  justify-content: space-between; /* Coloca os elementos próximos à borda */
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: end;
 }
 
 .book-details {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .book-title {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 5px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .book-author {
   font-size: 16px;
-  margin-bottom: 5px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .book-year {
   font-size: 16px;
-  margin-bottom: 5px; /* Reduzido para ficar mais próximo */
 }
 
 .author-photo {
-  border: 2px solid #fc7022;  
+  border: 2px solid black;  
   width: 50px;
   height: 50px;
   background-size: cover;
   background-position: center;
   border-radius: 50%;
   align-self: flex-end; /* Posiciona no canto superior direito */
+}
+
+.canto {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
 }

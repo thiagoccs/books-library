@@ -62,18 +62,20 @@ function BookCard({ titulo, autor, ano, id, deleteAtivo = false, favAtivo = fals
           <p className="book-author"><strong>Autor: </strong>{autor}</p>
           <p className="book-year"><strong>Ano: </strong>{ano}</p>
         </div>
-        <div
-          className="author-photo"
-          style={{ backgroundImage: `url(${fotAutor})` }}
-        ></div>
-        {
-          favAtivo ? <label>favoritar:<input
-            type="checkbox"
-            checked={isChecked}
-            onClick={handleCheckboxChange}
-          /></label> : ''
-        }
-        {deleteAtivo ? <BttnDelete onClick={deletarFavorito}>X</BttnDelete> : ''}
+        <div className="canto">
+          {
+            favAtivo ? <label className="label">favoritar:<input
+              type="checkbox"
+              checked={isChecked}
+              onChange={handleCheckboxChange}
+            /></label> : ''
+          }
+          {deleteAtivo ? <BttnDelete onClick={deletarFavorito}>X</BttnDelete> : <br></br>}
+          <div
+            className="author-photo"
+            style={{ backgroundImage: `url(${fotAutor})` }}
+          ></div>
+        </div>
       </div>
     </div>
   );
